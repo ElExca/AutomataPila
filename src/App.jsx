@@ -22,7 +22,7 @@ function App() {
       <div style={{ display: 'flex' }}>
         <MonacoEditor
           width="800"
-          height="600"
+          height="200"
           language="plaintext"
           theme="vs-dark"
           value={cadena}
@@ -177,8 +177,10 @@ function obtenerProduccion(noTerminal, siguiente) {
             return ['VAR', 'C13'];
           } else if (siguiente === 'i') {
             return ['IF'];
-          } else {
-            // Agrega cualquier otra lógica necesaria según tu gramática
+          } else if (siguiente === 'f'){
+            return ['FOR']
+            }
+            else{// Agrega cualquier otra lógica necesaria según tu gramática
             return null;
           }
           case 'C13':
@@ -224,11 +226,83 @@ function obtenerProduccion(noTerminal, siguiente) {
         case 'A7':
           return ['PI', 'A8'];
         case 'A8':
-          return ['VAR', 'A9'];
+          return ['FOR', 'A9'];
         case 'A9':
           return [')','C13'];
         case 'OV':
           return ['L','ML'];
+      case 'FOR':
+        return ['PFOR', 'B1']
+      case 'PFOR':
+        return ['f']
+      case 'B1':
+        return ['PFOR1', 'B2']
+      case 'PFOR1':
+        return ['o']
+      case 'B2':
+        return ['PFOR2', 'B3']
+      case 'PFOR2':
+        return ['r']
+        case 'B3':
+          if (/[a-z]/i.test(siguiente)) {
+            return ['L', 'B4'];
+          } else if (/\d/.test(siguiente)) {
+            return ['D', 'B14'];
+          } else {
+            return null;
+          }        
+      case 'B4':
+        return ['ML', 'B5']
+      case 'B5':
+        return ['DP', 'B6']
+      case  'B6':
+  if (/[a-z]/i.test(siguiente)) {
+    return ['L', 'B7'];
+  } else if (/\d/.test(siguiente)) {
+    return ['D', 'B13'];
+  } else {
+    return null;
+  }
+      case 'B7':
+        return ['ML', 'B8']
+      case 'B8':
+        return ['DP', 'B9']
+        case 'B9':
+          if (siguiente === '+') {
+            return ['IDP', 'B15'];
+          } else if (siguiente === '-') {
+            return ['IDM', 'B16'];
+          } else {
+            return null;
+          }
+      case 'B10':
+        return ['LA', 'B11']
+      case 'LA':
+        return ['{']
+      case 'B11':
+        return ['VAR', 'B12']
+      case 'B12':
+        return ['}']
+      case 'B13':
+        return ['MD' ,'B8']
+      case 'B14':
+        return ['MD', 'B5']
+        case 'IDP':
+          return ['+']
+        
+        case 'IDM':
+          return ['-']
+        
+        case 'B15':
+            return ['IDP1', 'B10'];
+        
+        case 'IDP1':
+            return ['+'];
+        
+        case 'B16':
+            return ['IDM1', 'B10'];
+        case 'IDM1':
+            return ['-'];
         
       default:
         return null;
