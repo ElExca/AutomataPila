@@ -21,10 +21,10 @@ Function
     = "FNC_"_ Identifier _"("_ Parametros?_ ")"_ "["_ Content _ "]"
 
 IF
-    = _ "if" _ condition _ "(" _ Content _ ")"
+    = "if" _ condition _ "(" _ Content _ ")"
 
 FOR
-    = _ "for"  _ bucle _ "{" _ Content _ "}"
+    = "for"  _ bucle _ "{" _ Content _ "}"
 
 Parametros = _ Identifier ( _ "," _ Identifier _ )*
 
