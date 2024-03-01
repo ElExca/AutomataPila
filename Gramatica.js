@@ -143,8 +143,8 @@ function peg$parse(input, options) {
 
       peg$c0 = "contenido",
       peg$c1 = peg$literalExpectation("contenido", false),
-      peg$c2 = "FNC_",
-      peg$c3 = peg$literalExpectation("FNC_", false),
+      peg$c2 = "FCN_",
+      peg$c3 = peg$literalExpectation("FCN_", false),
       peg$c4 = "(",
       peg$c5 = peg$literalExpectation("(", false),
       peg$c6 = ")",
@@ -1576,5 +1576,6 @@ function peg$parse(input, options) {
     );
   }
 }
+
 
 export { peg$SyntaxError as SyntaxError, peg$parse as parse };

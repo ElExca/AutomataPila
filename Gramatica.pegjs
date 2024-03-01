@@ -18,7 +18,7 @@ contenido
 = _ "contenido" _
 
 Function
-    = "FNC_"_ Identifier _"("_ Parametros?_ ")"_ "["_ Content _ "]"
+    = "FCN_"_ Identifier _"("_ Parametros?_ ")"_ "["_ Content _ "]"
 
 IF
     = "if" _ condition _ "(" _ Content _ ")"
